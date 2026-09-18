@@ -1,3 +1,4 @@
+
 # данные пользователя — не должны попадать в репозиторий
 meals.json
 settings.json
@@ -7,6 +8,7 @@ __pycache__/
 *.pyc
 
 # сборка PyInstaller
+
 build/
 dist/
 *.spec

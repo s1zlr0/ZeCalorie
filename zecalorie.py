@@ -2,6 +2,8 @@
 zecalorie.py — ZeCalorie
 
 
+
+
 TODO: может добавить темную тему когда-нибудь
 """
 
@@ -15,12 +17,12 @@ from datetime import datetime
 
 def resource_path(*parts):
 
-
     base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base, *parts)
 
 
 def data_path(*parts):
+
     if getattr(sys, "frozen", False):
         base = os.path.dirname(sys.executable)
     else:
@@ -34,6 +36,7 @@ ICON_ICO = resource_path("assets", "app_icon.ico")
 ICON_PNG = resource_path("assets", "app_icon_256.png")
 
 CATEGORIES = ["Завтрак", "Обед", "Ужин", "Перекус"]
+
 
 PAGE_BG = "#f3f4f6"
 CARD_BG = "#ffffff"
@@ -87,6 +90,7 @@ def rounded_points(x1, y1, x2, y2, r):
 
 class RoundedButton(tk.Canvas):
 
+
     def __init__(self, parent, text, command=None, bg=ACCENT, fg="white",
                  hover_bg=ACCENT_HOVER, border=None, font_size=10, bold=False,
                  radius=10, padx=18, pady=10):
@@ -137,6 +141,7 @@ class RoundedButton(tk.Canvas):
 
 
 class SegmentedControl(tk.Frame):
+
 
     def __init__(self, parent, options, on_change):
         super().__init__(parent, bg=PAGE_BG)
@@ -249,16 +254,20 @@ class CalorieTrackerApp(tk.Tk):
         self._maximize_window()
 
     def _maximize_window(self):
+
         try:
             self.state("zoomed")
+
             return
         except tk.TclError:
             pass
         try:
+
             self.attributes("-zoomed", True)
             return
         except tk.TclError:
             pass
+
         sw = self.winfo_screenwidth()
         sh = self.winfo_screenheight()
         self.geometry(f"{sw}x{sh}+0+0")
@@ -276,6 +285,7 @@ class CalorieTrackerApp(tk.Tk):
             pass
 
     def _setup_ttk_style(self):
+
         style = ttk.Style(self)
         try:
             style.theme_use("clam")
@@ -293,6 +303,7 @@ class CalorieTrackerApp(tk.Tk):
         style.map("TCombobox", fieldbackground=[("readonly", CARD_BG)])
 
     def _build_ui(self):
+
         wrapper = tk.Frame(self, bg=PAGE_BG)
         wrapper.place(relx=0.5, rely=0, anchor="n")
 
@@ -487,6 +498,7 @@ class CalorieTrackerApp(tk.Tk):
             bg=CARD_BG, hover_bg=BORDER_SOFT, fg=TEXT, border=BORDER,
         ).pack(anchor="w", pady=(14, 0))
 
+
     def add_meal(self):
         name = self.name_var.get().strip()
         cal_text = self.cal_var.get().strip()
@@ -596,11 +608,13 @@ class CalorieTrackerApp(tk.Tk):
         age = int(self.age_var.get())
 
         if self.gender_var.get() == "Мужской":
+
             bmr = 10 * weight + 6.25 * height - 5 * age - 161
         else:
             bmr = 10 * weight + 6.25 * height - 5 * age + 5
 
         goal = round(bmr * 1.2) 
+
         self.goal_var.set(str(goal))
         self.settings["daily_goal"] = goal
         save_json(SETTINGS_FILE, self.settings)
