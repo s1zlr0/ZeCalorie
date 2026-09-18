@@ -1,0 +1,12 @@
+# данные пользователя — не должны попадать в репозиторий
+meals.json
+settings.json
+
+# питон
+__pycache__/
+*.pyc
+
+# сборка PyInstaller
+build/
+dist/
+*.spec
